@@ -1,2 +1,2 @@
-all: Hello-world.c CH.c
-	gcc -Wall Hello-world.c CH.c -o CHESSNIZ
+all: main.c conios.c
+	gcc -Wall -o main main.c conios.c
