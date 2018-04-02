@@ -3,13 +3,15 @@
 #include <string.h>
 #include "conios.h"
 
-
 const int n=9, m=9+1;
+
+void swap(char *x, char *y);
+void outBoard(char a[n][m]);
 
 int main()
 {
     char a[n][m];
-    int i, j;
+    int i;
     FILE *lone;
     
     lone=fopen("Chess.txt", "r");
@@ -21,15 +23,10 @@ int main()
     }
     fclose(lone);
     
-    printf("    A B C D E F G H\n\n");
-    for (i=1; i<n; i++) {
-	printf("%d", i);
-	for (j=0; j<m; j++) {
-	    printf("%2c", a[i][j]);
-	}
-    }
+    outBoard(a);
     
-    char xod[6], tmp;
+    char xod[6];
+    char tmp0, tmp1;
     int h[5];
     printf("\nХод: "); scanf("%s", xod);
     
@@ -83,20 +80,54 @@ int main()
 	    break;
 	}
     }
-    tmp=a[h[1]][h[0]];
-    a[h[1]][h[0]]=a[h[4]][h[3]];
-    a[h[4]][h[3]]=tmp;
     
-    printf("\n");
-    system("clear");
-    printf("    A B C D E F G H\n\n");
-    for (i=1; i<n; i++) {
-	printf("%d", i);
-	for (j=0; j<m; j++) {
-	    printf("%2c", a[i][j]);
+    tmp0=a[h[1]][h[0]];
+    tmp1=a[h[4]][h[3]];
+    if (tmp0=='p' || tmp0=='P') {
+	if (h[0]==h[3]) {
+	    if (h[2]==-1 && tmp1==' ') {
+		swap(&a[h[1]][h[0]], &a[h[4]][h[3]]);
+	    }
 	}
     }
+    outBoard(a);
+    printf("%s", xod);
     printf("\n");
     getch();
     return 0;
 }
+
+void swap(char *x, char *y)
+{
+    char tmp=*x; *x=*y; *y=tmp;
+}
+
+void outBoard(char a[n][m])
+{
+    int i, j;
+    printf("\n");
+    clrscr();
+    printf("    A B C D E F G H\n\n");
+    for (i=1; i<n; i++) {
+	printf("\x1b[0m%d", i);
+	for (j=0; j<m; j++) {
+	    if (a[i][j]>='A' && a[i][j]<='Z') printf("\x1b[37m");
+		else printf("\x1b[30m");
+	    printf("%2c", a[i][j]);
+	}
+    }
+    printf("\x1b[0m\n");
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
