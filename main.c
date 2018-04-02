@@ -9,7 +9,6 @@ const int n=9, m=9+1;
 int main()
 {
     char a[n][m];
-    char tmp, ch;
     int i, j;
     FILE *lone;
     
@@ -29,35 +28,64 @@ int main()
 	    printf("%2c", a[i][j]);
 	}
     }
-    int h[5+1];
-    for (i=1; i<=5; i++) {
-	ch=getch();
-	switch (ch) {
-	case 'a': h[i]=1; break;
-	case 'b': h[i]=2; break;
-	case 'c': h[i]=3; break;
-	case 'd': h[i]=4; break;
-	case 'e': h[i]=5; break;
-	case 'f': h[i]=6; break;
-	case 'g': h[i]=7; break;
-	case 'h': h[i]=8; break;
+    
+    char xod[6], tmp;
+    int h[5];
+    printf("\nХод: "); scanf("%s", xod);
+    
+    for (i=0; i<5; i++) {
+	switch (xod[i]) {
+	case 'a':
+	case '1':
+	    h[i]=1;
+	    break;
 	
-	case '1': h[i]=1; break;
-	case '2': h[i]=2; break;
-	case '3': h[i]=3; break;
-	case '4': h[i]=4; break;
-	case '5': h[i]=5; break;
-	case '6': h[i]=6; break;
-	case '7': h[i]=7; break;
-	case '8': h[i]=8; break;
+	case 'b':
+	case '2':
+	    h[i]=2;
+	    break;
 	
-	case '-': h[0]=-1; break;
-	case 'x': h[0]=-2; break;
+	case 'c':
+	case '3':
+	    h[i]=3;
+	    break;
+	
+	case 'd':
+	case '4':
+	    h[i]=4;
+	    break;
+	
+	case 'e':
+	case '5':
+	    h[i]=5;
+	    break;
+	
+	case 'f':
+	case '6':
+	    h[i]=6;
+	    break;
+	
+	case 'g':
+	case '7':
+	    h[i]=7;
+	    break;
+	
+	case 'h':
+	case '8':
+	    h[i]=8;
+	    break;
+	
+	case '-':
+	    h[2]=-1;
+	    break;
+	case 'x':
+	    h[2]=-2;
+	    break;
 	}
     }
-    tmp=a[h[1]][h[2]];
-    a[h[1]][h[2]]=a[h[4]][h[5]];
-    a[h[4]][h[5]]=tmp;
+    tmp=a[h[1]][h[0]];
+    a[h[1]][h[0]]=a[h[4]][h[3]];
+    a[h[4]][h[3]]=tmp;
     
     printf("\n");
     system("clear");
