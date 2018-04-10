@@ -46,4 +46,4 @@ bin:
 src:
 	mkdir src
 clean:
-	-rm -rf build
+	-rm -rf build bin/main
