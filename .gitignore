@@ -2,5 +2,4 @@
 #Испольняемый файл
 
 bin/
-src/board*
-build/
+build/*.o
