@@ -17,6 +17,8 @@ BIN=bin/
 #Задаю испольняемый файл
 EXECUTABLE=$(BIN)main
 
+.PHONY: all clean
+
 all: bin build $(EXECUTABLE)
 
 $(EXECUTABLE): $(objects)
