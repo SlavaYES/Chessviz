@@ -10,28 +10,28 @@ int n=9, m=9+1;
 
 int main()
 {
-    char a[n][m];
-    bread(a);
-    char xod[6]="\0", ch='\0';
-    int h[5];
-    int flag=0;//Флаг 0- Белый, Флаг 1- Черный
-    
+    char board[n][m];
+    char step_char[7]="\0", exit=' ';
+    int  step_int[6];
+    int  color=1;//White is 1, Black is 0
+
+    boardRead(board);
     do {
-	outBoard(a, xod);
-	if (flag) {
-	    printf("Ход Черного: ");
-	} else printf("Ход Белого: ");
+	outBoard(board, step_char);
+	if (color) {
+	    printf("Ход Белого: ");
+	} else printf("Ход Черного: ");
 	
-	scanf("%s", xod);
+	scanf("%s", step_char);
 	
-	if (check(a, xod, h, flag)) {
-	    outBoard(a, xod);
-	    flag=1-flag;
+	if (check(board, step_char, step_int, color)) {
+	    outBoard(board, step_char);
+	    color=1-color;
 	} else printf("Попробуйте еще раз.");
 	printf("\nЗакончить игру?(yy/n): ");
 	getch();
-	ch=getch();
-    } while (ch!='y');
+	exit=getch();
+    } while (exit!='y');
     getch();
     return 0;
 }

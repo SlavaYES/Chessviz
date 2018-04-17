@@ -2,16 +2,18 @@
 #include <stdio.h>
 extern int n, m;
 
-void bread(char a[n][m])
+void boardRead(char a[n][m])
 {
-    FILE *lone;
+    FILE *file;
     int i;
-    lone=fopen("Chess.txt", "r");
+
+    file=fopen("Chess.txt", "r");
+    if (!file) printf("Error\n");
     a[0][0]='\0';
     i=1;
-    while (!feof(lone)) {
-	fread(a[i], sizeof(a[1]), 1, lone);
+    while (!feof(file)) {
+	fread(a[i], sizeof(a[1]), 1, file);
 	i++;
     }
-    fclose(lone);
+    fclose(file);
 }

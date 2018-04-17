@@ -1,2 +1,2 @@
 extern int n, m;
-void bread(char a[n][m]);
+void boardRead(char a[n][m]);
