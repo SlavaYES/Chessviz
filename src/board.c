@@ -63,6 +63,7 @@ int check(char chess[n][m], char *move_char, int *move_int, int flag)
     }
     char temp_before = chess[move_int[2]][move_int[1]];
     char temp_after = chess[move_int[5]][move_int[4]];
+
     /*ПРОВЕРКА НА ЧЕРНОТУ*/
     //flag=1 this is white
     //flag=0 this is black
@@ -71,12 +72,12 @@ int check(char chess[n][m], char *move_char, int *move_int, int flag)
     if (flag) {
 	if (temp_before >= 'A' && temp_before <= 'Z') {
 	    /*PESHKA*/
-	    if (temp_before == 'P' && move_char[0] == 'P') {
+	    if (temp_before == 'P') {
 		/*EAT*/
 		if (move_char[3] == 'x' && temp_after != ' '
 			&& abs(move_int[1]-move_int[4]) == 1
 				&& move_int[2]-move_int[5] == 1) {
-		    eat(&chess[move_int[2]][move_int[1]], &chess[move_int[5]][move_int[4]]);
+		    eat(&chess[move_int[2]][move_int[1]], &chess[move_int[4]][move_int[5]]);
 		    return 1;
 		}
 		/*MOVE*/
@@ -224,6 +225,74 @@ int check(char chess[n][m], char *move_char, int *move_int, int flag)
 		    swap(&chess[move_int[2]][move_int[1]], 
 				&chess[move_int[5]][move_int[4]]);
 		    return 1;
+		}
+	    }
+	    /*BISHOP*/
+	    if (temp_before == 'b' && move_char[0] == 'B') {
+		if (abs(move_int[2]-move_int[5]) == abs(move_int[1]-move_int[4])) {
+		    /*EAT*/
+		    if (move_char[3] == 'x' && temp_after != ' ') {
+			eat(&chess[move_int[2]][move_int[1]], &chess[move_int[5]][move_int[4]]);
+			return 1;
+		}
+		    /*MOVE*/
+		    if (move_char[3] == '-' && temp_after == ' ') {
+			swap(&chess[move_int[2]][move_int[1]],
+				&chess[move_int[5]][move_int[4]]);
+			return 1;
+		    }
+		}
+	    }
+	    /*ROOK*/
+	    if (temp_before == 'r' && move_char[0] == 'R') {
+		if (move_int[1] == move_int[4] || move_int[2] == move_int[5]) {
+		    /*EAT*/
+		    if (move_char[3] == 'x' && temp_after != ' ') {
+			eat(&chess[move_int[2]][move_int[1]], &chess[move_int[5]][move_int[4]]);
+			return 1;
+		    }
+		    /*MOVE*/
+		    if (move_char[3] == '-' && temp_after == ' ') {
+			swap(&chess[move_int[2]][move_int[1]],
+				&chess[move_int[5]][move_int[4]]);
+			return 1;
+		    }
+		}
+	    }
+	    /*KING*/
+	    if (temp_before == 'k' && move_char[0] == 'K') {
+		if ((abs(move_int[1]-move_int[4]) == 1
+				|| abs(move_int[1]-move_int[4]) == 0)
+					&& (abs(move_int[2]-move_int[5]) == 1
+						|| abs(move_int[2]-move_int[5]) == 0)) {
+		    /*EAT*/
+		    if (move_char[3] == 'x' && temp_after != ' ') {
+			eat(&chess[move_int[2]][move_int[1]], &chess[move_int[5]][move_int[4]]);
+			return 1;
+		    }
+		    /*MOVE*/
+		    if (move_char[3] == '-' && temp_after == ' ') {
+			swap(&chess[move_int[2]][move_int[1]],
+				&chess[move_int[5]][move_int[4]]);
+			return 1;
+		    }
+		}
+	    }
+	    /*QUEEN*/
+	    if (temp_before == 'q' && move_char[0] == 'Q') {
+		if (abs(move_int[2]-move_int[5]) == abs(move_int[1]-move_int[4])
+			|| (move_int[1] == move_int[4] || move_int[2] == move_int[5])) {
+		    /*EAT*/
+		    if (move_char[3] == 'x' && temp_after != ' ') {
+			eat(&chess[move_int[2]][move_int[1]], &chess[move_int[5]][move_int[4]]);
+			return 1;
+		    }
+		    /*MOVE*/
+		    if (move_char[3] == '-' && temp_after == ' ') {
+			swap(&chess[move_int[2]][move_int[1]],
+				&chess[move_int[5]][move_int[4]]);
+			return 1;
+		    }
 		}
 	    }
         }
