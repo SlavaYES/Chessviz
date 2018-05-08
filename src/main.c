@@ -12,7 +12,6 @@ int main()
 {
     char board[n][m];
     char step_char[7]="\0", exit=' ';
-    int  step_int[6];
     int  color=1;//White is 1, Black is 0
 
     boardRead(board);
@@ -24,7 +23,7 @@ int main()
 	
 	scanf("%s", step_char);
 	
-	if (check(board, step_char, step_int, color)) {
+	if (check(board, step_char, color)) {
 	    outBoard(board, step_char);
 	    color=1-color;
 	} else printf("Попробуйте еще раз.");

@@ -14,9 +14,10 @@ void eat(char *x, char *y)
     *y=*x; *x=' ';
 }
 
-int check(char chess[n][m], char *move_char, int *move_int, int flag)
+int check(char chess[n][m], char *move_char, int flag)
 {
     int i;
+    int move_int[6];
     move_int[0]=move_int[3]=0;
     for (i = 1; i < 6; i++) {
 	switch (move_char[i]) {
