@@ -2,8 +2,8 @@
 #Задаю компилятор
 CC=gcc
 #Задаю ключи компиляции
-CFLAGS= -Wall -Werror -c std=-c99
-FLAGS= -Wall -Werror std=-c99
+CFLAGS= -Wall -Werror -c -std=c99
+FLAGS= -Wall -Werror -std=c99
 #Задаю путь src
 SRC=src/
 
