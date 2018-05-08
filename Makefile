@@ -72,7 +72,5 @@ buildt:
 	mkdir buildt
 bin:
 	mkdir bin
-src:
-	mkdir src
 clean:
 	-rm -rf build buildt bin/main

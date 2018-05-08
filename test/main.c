@@ -367,7 +367,7 @@ CTEST (W_Peshka, InCorrect_p_hack)
     a[4][7]='P';
     a[5][6]=' ';
     int result=check(a, xod, 1);
-    int expected=1;
+    int expected=0;
     ASSERT_EQUAL(expected, result);
 }
 
@@ -430,7 +430,7 @@ CTEST (B_Rook, InCorrect_Rook_f)
     a[1][1]='R';
     a[1][3]='n';
     int result=check(a, xod, 0);
-    int expected=1;
+    int expected=0;
     ASSERT_EQUAL(expected, result);
 }
 
@@ -495,7 +495,7 @@ CTEST (B_Bishop, InCorrect_Bishop_f)
     a[3][1]='b';
     a[1][3]='Q';
     int result=check(a, xod, 0);
-    int expected=1;
+    int expected=0;
     ASSERT_EQUAL(expected, result);
 }
 
@@ -558,7 +558,7 @@ CTEST (B_Queen, InCorrect_Queen_f)
     a[4][1]='q';
     a[4][2]='K';
     int result=check(a, xod, 0);
-    int expected=1;
+    int expected=0;
     ASSERT_EQUAL(expected, result);
 }
 
